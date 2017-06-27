@@ -1,0 +1,25 @@
+<h1>メッセージ交換</h1>
+<%= link_to "login",login_path =%><br>
+<%= link_to "sign up",new_user_path =%><br>
+<%= link_to "logout",logout_path =%><br>
+
+<% flash.each do |key, value| %>
+<h1><%= value %></h1>
+<% end %>
+
+
+<%= form_for(:aaa, url: friendships_path) do |f| %>
+<%= f.label "uname" %>
+<%= f.text_field "uname", class: 'form-control' %>
+<%= f.submit "友達を追加する", class: "btn btn-primary" %>
+<% end %>
+
+<% if @current_user %>
+<h2>あなたのunameは「<%= @current_user.uname %>」</h2>
+<h2>友達リスト</h2>
+<%   @current_user.friendships.each do |fr| %> 
+   <p><%= fr.uname %> </p>
+   <a href = "<%= "/room/" + @current_user.uname + "/" +fr.uname %>"  >会話へ</a>
+<%  end %> 
+<% end %>
+

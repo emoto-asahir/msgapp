@@ -1,0 +1,83 @@
+    <!-- update the version number as needed -->
+  
+    <script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
+
+<h1 id="ssss">helloworld</h1>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyDmyb3BGG_KylUGBZgr0YVmEGychTif0vA",
+    authDomain: "chat-57cf2.firebaseapp.com",
+    databaseURL: "https://chat-57cf2.firebaseio.com",
+    projectId: "chat-57cf2",
+    storageBucket: "chat-57cf2.appspot.com",
+    messagingSenderId: "677325226607"
+  };
+  firebase.initializeApp(config);
+  firebase.auth().signInWithCustomToken("<%= @custom_token %>").catch(function(error) {
+  // Handle Errors here.
+  console.log("aaaaasssss")
+  var errorCode = error.code;
+  var errorMessage = error.message;
+  // ...
+});
+        var db = firebase.database();
+      var myChatAll = db.ref("/msg/nnn");
+
+      function changeData(){
+	    alert("aaaaaaa");
+        var text = document.getElementById("my_text").value;
+        myChatAll.push({title:"example", text:text});
+      }
+      var e = document.getElementById('ssss');
+      var elemLi = document.createElement('li');
+      elemLi.textContent = "aaaaaa";
+      e.appendChild(elemLi);
+      myChatAll.once("value", function(snapshot) { 
+        document.getElementById("chatText").innerText = snapshot.val().text;
+     //   console.log(snapshot.val());
+     //   console.log(Object.keys(snapshot.val()));
+        Object.keys(snapshot.val()).forEach(function (key) {
+     //     console.log(snapshot.val()[key]);
+     //     console.log(snapshot.val()[key]["text"]);
+          var elemLi = document.createElement('li');
+          elemLi.textContent = snapshot.val()[key]["text"]; 
+          e.appendChild(elemLi);
+        });
+      });
+      
+      myChatAll.on('child_added', function(snapshot) { 
+        console.log("asssssssssss");
+        console.log(snapshot.val());
+        console.log(snapshot.val()["text"]);
+      });
+</script>
+  </head>
+  <body>
+    <div id="message">
+      <h1><%= @custom_token %></h1>
+      <p>hhhhhhhhhhhhhhh</p>
+      <ul id = "ss">
+        <li id="chatText"></li>
+        <li><input type="text" name="" id="my_text"></li>
+        <li><a onclick="changeData()">更新</a></li>
+      </ul>
+    </div>
+
+
+    <script>
+	  <body>
+    <div id="message">
+      <h1>Firebaseてすと</h1>
+      <p>文字を入れると更新されます</p>
+      <ul id="chatTextList">
+        <li id="chatText"></li>
+        <li><input type="text" name="" id="my_text"></li>
+        <li><a onclick="changeData()">更新</a></li>
+      </ul>
+    </div>
+
+
+
+  </body>
+</html>

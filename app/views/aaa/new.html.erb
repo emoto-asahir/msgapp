@@ -1,0 +1,12 @@
+<h1>login</h1>
+
+    <%= form_for(:aaa, url: login_path) do |f| %>
+
+      <%= f.label :uname %>
+      <%= f.text_field :uname, class: 'form-control' %>
+
+      <%= f.label :password %>
+      <%= f.password_field :password, class: 'form-control' %>
+
+      <%= f.submit "Log in", class: "btn btn-primary" %>
+    <% end %>
